@@ -1,0 +1,20 @@
+{
+  "name": "dev.csabaszabo.computhermbroadlinkthermostat",
+  "version": "0.1.0",
+  "main": "app.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint --ext .js,.ts --ignore-path .gitignore ."
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^16.1.0",
+    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.4",
+    "@types/node": "^20.3.2",
+    "eslint": "^7.32.0",
+    "eslint-config-athom": "^3.1.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "node-broadlink": "^2.4.0"
+  }
+}

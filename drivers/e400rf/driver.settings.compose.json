@@ -1,0 +1,8 @@
+[
+  {
+    "id": "remove_lock",
+    "type": "checkbox",
+    "value": false,
+    "label": { "en": "Remote lock" }
+  }
+]

@@ -1,0 +1,5 @@
+{
+  "error": {
+    "offline": "Your Thermostate went offline. Trying to reconnect..."
+  }
+}

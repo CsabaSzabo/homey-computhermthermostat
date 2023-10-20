@@ -1,0 +1,32 @@
+{
+  "id": "dev.csabaszabo.computhermthermostat",
+  "version": "0.2.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "brandColor": "#929292",
+  "name": {
+    "en": "Computherm Thermostat"
+  },
+  "description": {
+    "en": "Control your Computherm thermostat with Homey 🔥"
+  },
+  "category": [
+    "climate"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.jpg",
+    "large": "/assets/images/large.jpg",
+    "xlarge": "/assets/images/xlarge.jpg"
+  },
+  "author": {
+    "name": "Csaba Szabo",
+    "email": "sz.csabi.3@gmail.com"
+  },
+  "bugs": {
+    "url": "https://bitbucket.org/athom/com.athom.myapp/issues"
+  }
+}
