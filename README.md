@@ -1,6 +1,6 @@
 # Computherm Thermostat
 
-Controls Computherm thermostats.
+Controls Computherm thermostats. It uses [node-broadlink](https://github.com/ThomasTavernier/node-broadlink) as it's main dependency and functionality to communicate with Broadlink devices, like Computherm.
 
 ## How to developer
 
