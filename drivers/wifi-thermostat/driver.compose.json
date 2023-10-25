@@ -1,6 +1,6 @@
 {
   "name": {
-    "en": "Computherm Wifi thermostats"
+    "en": "Computherm Wifi thermostat"
   },
   "class": "thermostat",
   "capabilities": [
