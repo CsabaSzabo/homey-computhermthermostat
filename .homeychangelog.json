@@ -7,5 +7,8 @@
   },
   "0.2.3": {
     "en": "device icon update"
+  },
+  "0.3.0": {
+    "en": "renamed device with onoff capability"
   }
 }

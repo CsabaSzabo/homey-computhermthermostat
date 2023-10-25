@@ -1,6 +1,6 @@
 {
   "id": "dev.csabaszabo.computhermthermostat",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
