@@ -1,9 +1,10 @@
 {
   "name": {
-    "en": "Computherm E400RF"
+    "en": "Computherm Wifi thermostats"
   },
   "class": "thermostat",
   "capabilities": [
+    "onoff",
     "target_temperature",
     "measure_temperature"
   ],

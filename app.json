@@ -35,10 +35,11 @@
   "drivers": [
     {
       "name": {
-        "en": "Computherm E400RF"
+        "en": "Computherm Wifi thermostats"
       },
       "class": "thermostat",
       "capabilities": [
+        "onoff",
         "target_temperature",
         "measure_temperature"
       ],
@@ -49,9 +50,9 @@
         "lan"
       ],
       "images": {
-        "small": "/drivers/e400rf/assets/images/small.jpg",
-        "large": "/drivers/e400rf/assets/images/large.jpg",
-        "xlarge": "/drivers/e400rf/assets/images/xlarge.jpg"
+        "small": "/drivers/wifi-thermostat/assets/images/small.jpg",
+        "large": "/drivers/wifi-thermostat/assets/images/large.jpg",
+        "xlarge": "/drivers/wifi-thermostat/assets/images/xlarge.jpg"
       },
       "pair": [
         {
@@ -67,7 +68,7 @@
         }
       ],
       "discovery": "thermostat_mac",
-      "id": "e400rf",
+      "id": "wifi-thermostat",
       "settings": [
         {
           "id": "remove_lock",

@@ -23,7 +23,7 @@ class ThermostatDriver extends Homey.Driver {
 
     const devices = Object.values(discoveryResults).map((discoveryResult: DiscoveryResultMAC) => {
       return {
-        name: "Computherm E400RF",
+        name: "Computherm Wifi Thermostat",
         data: {
           id: discoveryResult.id,
           mac: discoveryResult.mac,

@@ -4,6 +4,39 @@ import Homey from "homey";
 import { DiscoveryResultMAC } from "homey/lib/DiscoveryStrategy";
 import { Hysen } from "node-broadlink";
 
+interface DayModel {
+  startHour: number;
+  startMinute: number;
+  temp: number;
+}
+
+export interface HysenClimateStatus {
+  remoteLock: number;
+  power: number;
+  active: number;
+  tempManual: number;
+  roomTemp: number;
+  thermostatTemp: number;
+  autoMode: number;
+  loopMode: number;
+  sensor: number;
+  osv: number;
+  dif: number;
+  svh: number;
+  svl: number;
+  roomTempAdj: number;
+  fre: number;
+  poweron: number;
+  unknown: number;
+  externalTemp: number;
+  hour: number;
+  min: number;
+  sec: number;
+  dayofweek: number;
+  weekDay: DayModel[];
+  weekEnd: DayModel[];
+}
+
 function convertMacToDecimal(mac: string): number[] {
   return mac.split(":").map((part) => parseInt(part, 16));
 }
@@ -38,8 +71,12 @@ class ThermostatDevice extends Homey.Device {
     return discoveryResult.id === this.getData().id;
   }
 
+  /**
+   * // This method will be executed once when the device has been found (onDiscoveryResult returned true)
+   *
+   * @param {DiscoveryResultMAC} discoveryResult result of the MAC discovery action
+   */
   async onDiscoveryAvailable(discoveryResult: DiscoveryResultMAC) {
-    // This method will be executed once when the device has been found (onDiscoveryResult returned true)
     this.log("ThermostatDevice is available");
     this.log(`Device ID=${discoveryResult.id} MAC=${discoveryResult.mac} address=${discoveryResult.address}`);
 
@@ -68,17 +105,11 @@ class ThermostatDevice extends Homey.Device {
     this.setAvailable().catch(this.error);
 
     // Process data
-    const status = await this._hysenDevice.getFullStatus();
+    const status: HysenClimateStatus = await this._hysenDevice.getFullStatus();
     this.log(" status =   ", status);
 
-
     // Set initial data
-    if (status.roomTemp != null) {
-      this.setCapabilityValue("measure_temperature", status.roomTemp);
-    }
-    if (status.thermostatTemp != null) {
-      this.setCapabilityValue("target_temperature", status.thermostatTemp);
-    }
+    this._setCapabilities(status);
 
     // Set initial settings
     if (status.remoteLock != null) {
@@ -86,15 +117,10 @@ class ThermostatDevice extends Homey.Device {
         remove_lock: status.remoteLock === 1,
       });
     }
-
     this.log(" settings (after init) =   ", this.getSettings());
 
     // Capability listeners
-    this.registerCapabilityListener("target_temperature", async (value) => {
-      this.log(" SET (TRY) target_temperature =   ", value);
-      await this._hysenDevice.setTemp(value);
-      this.log(" SET (DONE) target_temperature =   ", value);
-    });
+    this._setCapabilityListeners();
 
     // Start a timer which checks the device status every 1 minute
     this._startStatusTimer();
@@ -204,14 +230,10 @@ class ThermostatDevice extends Homey.Device {
     this._statusTimer = setInterval(async () => {
       try {
         const settings = this.getSettings();
-        const status = await this._hysenDevice.getFullStatus();
+        const status: HysenClimateStatus = await this._hysenDevice.getFullStatus();
         this.log(" (timer) status =   ", status);
-        if (status.roomTemp != null) {
-          this.setCapabilityValue("measure_temperature", status.roomTemp);
-        }
-        if (status.thermostatTemp != null) {
-          this.setCapabilityValue("target_temperature", status.thermostatTemp);
-        }
+
+        this._setCapabilities(status);
 
         const isChangedRemoteLock = settings.remove_lock !== (status.remoteLock === 1);
         if (status.remoteLock != null && isChangedRemoteLock) {
@@ -223,6 +245,32 @@ class ThermostatDevice extends Homey.Device {
         this.error("Failed to get status", error);
       }
     }, 60 * 1000);
+  }
+
+  private _setCapabilities(status: HysenClimateStatus) {
+    if (status.roomTemp != null) {
+      this.setCapabilityValue("measure_temperature", status.roomTemp);
+    }
+    if (status.thermostatTemp != null) {
+      this.setCapabilityValue("target_temperature", status.thermostatTemp);
+    }
+    if (status.power != null) {
+      this.setCapabilityValue("onoff", status.power === 1);
+    }
+  }
+
+  private _setCapabilityListeners() {
+    this.registerCapabilityListener("target_temperature", async (value) => {
+      this.log(" SET (TRY) target_temperature =   ", value);
+      await this._hysenDevice.setTemp(value);
+      this.log(" SET (DONE) target_temperature =   ", value);
+    });
+
+    this.registerCapabilityListener("onoff", async (value) => {
+      this.log(" SET (TRY) onoff =   ", value);
+      await this._hysenDevice.setPower(value ? 1 : 0);
+      this.log(" SET (DONE) onoff =   ", value);
+    });
   }
 
 }

@@ -11,7 +11,7 @@
     "en": "Computherm Thermostat"
   },
   "description": {
-    "en": "Control your Computherm thermostat with Homey 🔥"
+    "en": "Always set the right temperature in your home."
   },
   "category": [
     "climate"
