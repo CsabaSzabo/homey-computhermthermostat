@@ -257,6 +257,13 @@ class ThermostatDevice extends Homey.Device {
     if (status.power != null) {
       this.setCapabilityValue("onoff", status.power === 1);
     }
+
+    const capabilities = this.getCapabilities();
+    this.log("capabilities=", capabilities);
+
+    if (this.hasCapability("thermostat_mode")) {
+      this.setCapabilityValue("thermostat_mode", "heat");
+    }
   }
 
   private _setCapabilityListeners() {
@@ -271,6 +278,14 @@ class ThermostatDevice extends Homey.Device {
       await this._hysenDevice.setPower(value ? 1 : 0);
       this.log(" SET (DONE) onoff =   ", value);
     });
+
+    if (this.hasCapability("thermostat_mode")) {
+      this.registerCapabilityListener("thermostat_mode", async (value) => {
+        this.log(" SET (TRY) thermostat_mode =   ", value);
+        // await this._hysenDevice.setPower(value === "heat" ? 1 : 0);
+        // this.log(" SET (DONE) thermostat_mode =   ", value);
+      });
+    }
   }
 
 }

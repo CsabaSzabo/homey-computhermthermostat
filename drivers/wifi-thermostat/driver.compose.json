@@ -5,9 +5,18 @@
   "class": "thermostat",
   "capabilities": [
     "onoff",
+    "thermostat_mode",
     "target_temperature",
     "measure_temperature"
   ],
+  "capabilitiesOptions": {
+    "target_temperature": {
+      "step": 0.1,
+      "decimals": 1,
+      "min": 15,
+      "max": 30
+    }
+  },
   "platforms": [
     "local"
   ],
