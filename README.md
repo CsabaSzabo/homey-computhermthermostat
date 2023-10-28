@@ -2,7 +2,12 @@
 
 Controls Computherm thermostats. It uses [node-broadlink](https://github.com/ThomasTavernier/node-broadlink) as it's main dependency and functionality to communicate with Broadlink devices, like Computherm.
 
-## How to developer
+Links:
+- [🔗 Homey App Store](https://homey.app/en-us/app/dev.csabaszabo.computhermthermostat/Computherm-Thermostat/)
+- [🔗 Homey Community topic](https://community.homey.app/t/app-pro-computherm-thermostat/93053)
+
+
+## How to develop
 
 Useful commands:
 
