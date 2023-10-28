@@ -6,6 +6,23 @@ Links:
 - [🔗 Homey App Store](https://homey.app/en-us/app/dev.csabaszabo.computhermthermostat/Computherm-Thermostat/)
 - [🔗 Homey Community topic](https://community.homey.app/t/app-pro-computherm-thermostat/93053)
 
+## Device compatibility table
+
+| Device                                                                   | Status  | Notes |
+|--------------------------------------------------------------------------|---------|-------|
+| [B220](https://computherm.info/en/wi-fi_thermostats/computherm_b220)     |         |       |
+| [B300](https://computherm.info/en/wi-fi_thermostats/computherm_b300)     |         |       |
+| [B300RF](https://computherm.info/en/wi-fi_thermostats/computherm_b300rf) |         |       |
+| [B400RF](https://computherm.info/en/wi-fi_thermostats/computherm_b400rf) |         |       |
+| [E230](https://computherm.info/hu/termekeink/computherm-e230)            |         |       |
+| [E280](https://computherm.info/en/wi-fi_thermostats/computherm_e280)     | testimg |       |
+| [E280 FC](https://computherm.info/hu/termekeink/computherm-e280-fc)      |         |       |
+| [E300](https://computherm.info/en/wi-fi_thermostats/computherm_e300)     |         |       |
+| [E300 FC](https://computherm.info/hu/termekeink/computherm-e300-fc)      |         |       |
+| [E400RF](https://computherm.info/en/wi-fi_thermostats/computherm_e400rf) | testing |       |
+| [E800RF](https://computherm.info/hu/termekeink/computherm-e800rf)        |         |       |
+| [E800RF](https://computherm.info/hu/termekeink/computherm-e800rf-tx)     |         |       |
+
 
 ## How to develop
 
