@@ -16,5 +16,8 @@
   },
   "0.3.2": {
     "en": "temporary remove thermostat capability"
+  },
+  "0.3.3": {
+    "en": "community link"
   }
 }
