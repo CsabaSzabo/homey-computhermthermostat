@@ -248,22 +248,23 @@ class ThermostatDevice extends Homey.Device {
   }
 
   private _setCapabilities(status: HysenClimateStatus) {
-    if (status.roomTemp != null) {
+    if (this.hasCapability("measure_temperature") && status.roomTemp != null) {
       this.setCapabilityValue("measure_temperature", status.roomTemp);
     }
-    if (status.thermostatTemp != null) {
+    if (this.hasCapability("target_temperature") && status.thermostatTemp != null) {
       this.setCapabilityValue("target_temperature", status.thermostatTemp);
     }
-    if (status.power != null) {
+
+    if (this.hasCapability("onoff") && status.power != null) {
       this.setCapabilityValue("onoff", status.power === 1);
     }
 
     const capabilities = this.getCapabilities();
     this.log("capabilities=", capabilities);
 
-    if (this.hasCapability("thermostat_mode")) {
-      this.setCapabilityValue("thermostat_mode", "heat");
-    }
+    // if (this.hasCapability("thermostat_mode")) {
+    //   this.setCapabilityValue("thermostat_mode", "heat");
+    // }
   }
 
   private _setCapabilityListeners() {
@@ -279,13 +280,13 @@ class ThermostatDevice extends Homey.Device {
       this.log(" SET (DONE) onoff =   ", value);
     });
 
-    if (this.hasCapability("thermostat_mode")) {
-      this.registerCapabilityListener("thermostat_mode", async (value) => {
-        this.log(" SET (TRY) thermostat_mode =   ", value);
-        // await this._hysenDevice.setPower(value === "heat" ? 1 : 0);
-        // this.log(" SET (DONE) thermostat_mode =   ", value);
-      });
-    }
+    // if (this.hasCapability("thermostat_mode")) {
+    //   this.registerCapabilityListener("thermostat_mode", async (value) => {
+    //     this.log(" SET (TRY) thermostat_mode =   ", value);
+    //     // await this._hysenDevice.setPower(value === "heat" ? 1 : 0);
+    //     // this.log(" SET (DONE) thermostat_mode =   ", value);
+    //   });
+    // }
   }
 
 }
